@@ -1,0 +1,62 @@
+\documentclass[aspectratio=1610,10pt]{beamer}
+
+\usetheme{nrel}
+
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikzout/]
+
+% % Fix tikz external to work with fmt files
+% \tikzset{%
+%   external/system call={%
+% pdflatex \tikzexternalcheckshellescape -halt-on-error %
+% -interaction=batchmode -fmt main -jobname "\image" "\texsource"}}
+
+% Integrate tikz with beamer overlay capability
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+
+% Command to include tikz files where it can use a compiled PDF file if necessary
+\newcommand{\includetikz}[1]{%
+  \tikzsetnextfilename{#1}
+  \input{tikz/#1}}
+
+
+\title{ExaWind Presentation with a really long title that overflows }
+\author{Shreyas Ananthan}
+\institute[NREL]{National Renewable Energy Laboratory \\ Golden, CO}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\begin{frame}
+  \frametitle{First slide}
+  Intro text
+  \begin{itemize}
+  \item Item 1
+  \item Item 2
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{second slide}
+\end{frame}
+
+\begin{frame}
+  \frametitle{third slide}
+\end{frame}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
