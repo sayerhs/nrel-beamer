@@ -1,0 +1,125 @@
+% NREL Beamer style file
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{helvet}
+\RequirePackage{tikz}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+
+\mode<presentation>
+\useinnertheme{rounded}
+\useoutertheme{default}
+\usecolortheme{default}
+\usefonttheme{professionalfonts}
+
+\definecolor{nrel@blue}{HTML}{007dcc}
+\definecolor{nrel@lightblue}{HTML}{0083e6}
+\definecolor{nrel@gray30}{gray}{0.3}
+\definecolor{nrel@gray50}{gray}{0.5}
+\definecolor{nrel@gray80}{gray}{0.8}
+
+\setbeamercolor{structure}{fg=nrel@gray30}
+\setbeamercolor{normal text}{fg=nrel@gray30}
+\setbeamercolor{block title}{use=structure,fg=white,bg=nrel@gray50}
+\setbeamercolor{block body}{use=structure,fg=black,bg=nrel@gray80}
+\setbeamercolor{section page header}{use=structure,fg=white,bg=nrel@blue}
+\setbeamercolor{frametitle}{use=structure,fg=white,bg=nrel@blue}
+\setbeamercolor{title}{use=structure,fg=white,bg=nrel@blue}
+\setbeamercolor{title page header}{use=structure,fg=white,bg=nrel@blue}
+\setbeamercolor{author}{use=structure,fg=white,bg=nrel@blue!95}
+
+\setbeamerfont{title}{size=\Large,series=\bfseries,parent=structure}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries,parent=structure}
+\setbeamerfont{section}{size=\Large,series=\bfseries,parent=structure}
+\setbeamerfont{author}{size=\large,series=\bfseries,parent=structure}
+\setbeamerfont{footline}{size=\tiny,series=\bfseries,parent=structure}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{enumerate item}[default]
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{itemize subitem}{--}
+\setbeamertemplate{itemize subsubitem}{-}
+\setbeamertemplate{itemize/enumerate subbody end}{\vspace{1ex}}
+\setbeamersize{text margin left=1em,text margin right=1em}
+
+\addtobeamertemplate{title page header}{\pgfsetfillopacity{0.65}}{\pgfsetfillopacity{1}}
+
+\defbeamertemplate*{title page}{nrel}
+{
+  \tikzsetnextfilename{nrel_titleslide}
+  \begin{tikzpicture}
+    \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+    \node[inner sep=0pt, anchor=north west](NREL Logo) at (0.05\paperwidth,\paperheight)
+    {\includegraphics[width=0.25\textwidth]{nrel_theme/nrel_logo}};
+    \node[anchor=south west](title) at (0.4\paperwidth,0.5\paperheight)
+    {
+      \pgfsetfillopacity{0.95}
+      \begin{beamercolorbox}[wd=0.6\textwidth,sep=1em]{title page header}
+        \usebeamerfont{title}\inserttitle%
+      \end{beamercolorbox}
+      \pgfsetfillopacity{1.0}
+    };
+    \node[anchor=north west](author) at (0.45\paperwidth,0.51\paperheight)
+    {
+      \pgfsetfillopacity{0.95}
+      \begin{beamercolorbox}[wd=0.55\textwidth,sep=2ex]{author}
+        \usebeamerfont{author}\insertauthor\\%
+        \vspace*{2em}
+        \usebeamerfont{institute}\insertinstitute\\%
+        \vspace*{2em}
+        \usebeamerfont{date}\insertdate%
+      \end{beamercolorbox}
+      \pgfsetfillopacity{1.0}
+    };
+  \end{tikzpicture}
+}
+
+\defbeamertemplate*{section page}{nrel}
+{
+  \begin{tikzpicture}
+    \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+    \node[inner sep=0pt, anchor=north west](NREL Logo) at (0.05\paperwidth,\paperheight)
+    {\includegraphics[width=0.25\textwidth]{nrel_theme/nrel_logo}};
+    \node[anchor=south west](section) at (0.3\paperwidth,0.5\paperheight)
+    {
+      \pgfsetfillopacity{0.95}
+      \begin{beamercolorbox}[wd=0.7\textwidth,sep=3ex]{section page header}
+        \usebeamerfont{section}\insertsection%
+      \end{beamercolorbox}
+      \pgfsetfillopacity{1.0}
+    };
+  \end{tikzpicture}
+}
+
+\AtBeginSection{%
+  {%
+    \usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{nrel_theme/nrel-turbine}}%
+    \frame[plain]{\sectionpage}
+  }
+}
+
+\renewcommand{\maketitle}{
+  {%
+  \usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{nrel_theme/nrel-turbine}}
+  \frame[plain]{\titlepage}
+  }%
+}
+
+\addtobeamertemplate{footline}
+{
+  \leavevmode%
+  \hfill
+  \hbox{
+    \begin{beamercolorbox}[ht=3ex,dp=1ex,right]{footline}
+      \usebeamerfont{footline}NREL | \strut\insertframenumber\strut\hspace*{2ex}
+    \end{beamercolorbox}
+  }
+  \vskip1ex\relax
+}
+
+\mode<all>
