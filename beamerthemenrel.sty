@@ -67,15 +67,15 @@
     \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
     \node[inner sep=0pt, anchor=north west](NREL Logo) at (0.05\paperwidth,\paperheight)
     {\includegraphics[width=0.25\textwidth]{nrel_theme/nrel_logo}};
-    \node[inner sep=0pt,outer sep=0pt](title) at (0.5\paperwidth,0.72\paperheight)
+    \node[inner sep=0pt,outer sep=0pt](title) at (0.5\textwidth,0.72\paperheight)
     {
-      \begin{beamercolorbox}[wd=\textwidth,center]{title page header}
+      \begin{beamercolorbox}[wd=0.9\textwidth,center,sep=0pt]{title page header}
         \usebeamerfont{title}\inserttitle%
       \end{beamercolorbox}
     };
-    \node[](author) at (0.5\paperwidth,0.4\paperheight)
+    \node[anchor=north](author) at (0.5\textwidth,0.5\paperheight)
     {
-      \begin{beamercolorbox}[wd=0.8\textwidth,center]{author}
+      \begin{beamercolorbox}[wd=0.9\textwidth,center,sep=0pt]{author}
         \usebeamerfont{author}\insertauthor\\%
         \vspace*{2em}
         \usebeamerfont{institute}\insertinstitute\\%
@@ -89,6 +89,7 @@
 
 \defbeamertemplate*{section page}{nrel}
 {
+  \tikzsetnextfilename{nrel_section\insertsectionnumber}
   \begin{tikzpicture}
     \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
     \node[inner sep=0pt, anchor=north west](NREL Logo) at (0.05\paperwidth,\paperheight)
@@ -101,6 +102,44 @@
     };
   \end{tikzpicture}
 }
+
+\newcommand{\nrelacknowledge}[1]{
+  \frame[plain]{
+    \tikzsetnextfilename{nrel_acknowledgements}
+    \begin{tikzpicture}
+      \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+      \node[inner sep=0pt, anchor=north west](NREL Logo) at (0.05\paperwidth,\paperheight)
+      {\includegraphics[width=0.25\textwidth]{nrel_theme/nrel_logo}};
+      \node[](section title) at (0.5\paperwidth,0.7\paperheight)
+      {
+        \begin{beamercolorbox}[wd=\textwidth,center]{section page header}
+          \usebeamerfont{section}Thank you!\\ Questions?%
+        \end{beamercolorbox}
+      };
+      \node[anchor=south west,inner sep=0pt, outer sep=0pt](acknowledgements)
+        at (0.05\textwidth,0.1\paperheight)
+      {
+        \begin{beamercolorbox}[wd=\textwidth,sep=0pt]{acknowledgements}
+          \parbox{0.9\textwidth}{
+            \scriptsize{%
+              The work was authored, in part, by the National Renewable Energy
+              Laboratory, operated by Alliance for Sustainable Energy, LLC, for the
+              U.S. Department of Energy (DOE) under Contract DE-AC36-08GO28308.
+              Funding for this work was provided by the DOE Office of Energy
+              Efficiency and Renewable Energy, Wind Energy Technologies Office. The
+              views expressed in this article do not necessarily represent the views
+              of the DOE or the U.S. Governement. The U.S. Government retains a
+              nonexclusive, paid-up, irrevocable, worldwide license to publish or
+              reproduce the published form of this work, or allow others to do so,
+              for U.S. Government purposes.
+            }
+          }
+        \end{beamercolorbox}
+      };
+    \end{tikzpicture}
+  }
+}
+
 
 \AtBeginSection{%
   {%
